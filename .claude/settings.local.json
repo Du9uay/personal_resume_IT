@@ -22,7 +22,11 @@
       "Bash(npm start)",
       "Bash(git init:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(gh repo set-default:*)"
     ],
     "deny": [],
     "ask": []
