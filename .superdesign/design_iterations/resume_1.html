@@ -1,0 +1,2434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能开发工程师 - 个人简历</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    
+    <!-- Force scroll to top on page load -->
+    <script>
+        // 立即执行，在页面加载的最早阶段
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
+    
+    <!-- Theme CSS embedded -->
+    <style>
+        :root {
+            /* Cyberpunk-inspired color scheme with neon accents */
+            --background: #0a0e27;
+            --background-secondary: #0f1629;
+            --foreground: #e0e6ed;
+            --foreground-secondary: #a0a9b9;
+            
+            /* Neon accent colors */
+            --primary: #00d4ff;
+            --primary-glow: 0 0 20px rgba(0, 212, 255, 0.5);
+            --secondary: #ff006e;
+            --secondary-glow: 0 0 20px rgba(255, 0, 110, 0.5);
+            --accent: #00ff88;
+            --accent-glow: 0 0 20px rgba(0, 255, 136, 0.5);
+            
+            /* UI colors */
+            --card: rgba(15, 22, 41, 0.8);
+            --card-hover: rgba(20, 30, 50, 0.9);
+            --border: rgba(0, 212, 255, 0.2);
+            --input: rgba(255, 255, 255, 0.05);
+            
+            /* Terminal colors */
+            --terminal-bg: #0c1021;
+            --terminal-text: #00ff88;
+            --terminal-cursor: #00d4ff;
+            
+            /* Status colors */
+            --success: #00ff88;
+            --warning: #ffb700;
+            --error: #ff006e;
+            --info: #00d4ff;
+            
+            /* Typography */
+            --font-sans: 'Inter', 'JetBrains Mono', system-ui, -apple-system, sans-serif;
+            --font-mono: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+            --font-display: 'Orbitron', 'Oxanium', 'Space Grotesk', sans-serif;
+            
+            /* Spacing */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 4rem;
+            
+            /* Border radius */
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+        }
+    </style>
+    
+    <style>
+        /* Custom styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-sans);
+            background: var(--background);
+            color: var(--foreground);
+            /* 移除overflow-x: hidden，因为它会破坏position: sticky */
+        }
+        
+        /* Scrollbar */
+        /* Hide scrollbar */
+        ::-webkit-scrollbar {
+            width: 0px;
+            display: none;
+        }
+        
+        body {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        /* Navigation */
+        .nav-fixed {
+            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 39, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 0, 110, 0.1) 50%, rgba(0, 255, 136, 0.1) 100%);
+        }
+        
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--terminal-cursor);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 1s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--terminal-cursor) }
+        }
+        
+        /* Hero Section Animations */
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .cursor-blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            animation: glitch-1 0.5s infinite;
+            color: var(--primary);
+            z-index: -1;
+        }
+        
+        .glitch::after {
+            animation: glitch-2 0.5s infinite;
+            color: var(--secondary);
+            z-index: -2;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translate(0) }
+            20% { transform: translate(-1px, 1px) }
+            40% { transform: translate(-1px, -1px) }
+            60% { transform: translate(1px, 1px) }
+            80% { transform: translate(1px, -1px) }
+        }
+        
+        @keyframes glitch-1 {
+            0%, 100% { clip-path: inset(0 0 0 0) }
+            25% { clip-path: inset(20% 0 60% 0) }
+            50% { clip-path: inset(50% 0 30% 0) }
+            75% { clip-path: inset(70% 0 10% 0) }
+        }
+        
+        @keyframes glitch-2 {
+            0%, 100% { clip-path: inset(0 0 0 0) }
+            25% { clip-path: inset(60% 0 20% 0) }
+            50% { clip-path: inset(30% 0 50% 0) }
+            75% { clip-path: inset(10% 0 70% 0) }
+        }
+        
+        /* Neon Glow */
+        .neon-text {
+            text-shadow: 
+                0 0 10px var(--primary),
+                0 0 20px var(--primary),
+                0 0 30px var(--primary),
+                0 0 40px var(--primary);
+        }
+        
+        .neon-border {
+            border: 1px solid var(--primary);
+            box-shadow: 
+                0 0 10px var(--primary),
+                inset 0 0 10px rgba(0, 212, 255, 0.2);
+        }
+        
+        /* Card 3D Effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: var(--radius-lg);
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        
+        /* Terminal */
+        .terminal {
+            background: var(--terminal-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: var(--font-mono);
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(90deg, #ff5f56, #ffbd2e, #27c93f);
+            opacity: 0.1;
+        }
+        
+        .terminal-line {
+            color: var(--terminal-text);
+            margin: 0.5rem 0;
+            opacity: 0;
+            animation: fadeInTerminal 0.5s forwards;
+        }
+        
+        @keyframes fadeInTerminal {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            position: relative;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            position: relative;
+            animation: progressAnimation 2s ease-out;
+        }
+        
+        @keyframes progressAnimation {
+            from { width: 0; }
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Matrix Rain */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        /* Radar Chart Container */
+        .radar-container {
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+        
+        /* ASCII Animation - About Section */
+        .ascii-about-container {
+            position: absolute;
+            left: 2%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            opacity: 0.7;
+            animation: asciiGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes asciiGlow {
+            0%, 100% { opacity: 0.6; filter: blur(0.3px); }
+            50% { opacity: 0.8; filter: blur(0px); }
+        }
+        
+        .asciibox {
+            font-size: 0.4rem;  /* 稍微增大字体 */
+            color: #00d4ff;  /* 使用主题青色 */
+            line-height: 0.6rem;  /* 调整行高 */
+            letter-spacing: 0.4rem;  /* 调整字符间距 */
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 3px rgba(0, 212, 255, 0.6);  /* 青色光晕 */
+            white-space: pre;
+            overflow: visible;  /* 改为visible，显示完整内容 */
+            display: inline-block;  /* 确保容器适应内容大小 */
+        }
+        
+        @media (max-width: 1200px) {
+            .ascii-about-container {
+                display: none;
+            }
+        }
+        
+        /* Hexagon Loading Effect */
+        .hexagon-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: transparent;  /* 透明背景 */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            pointer-events: none;  /* 允许点击穿透 */
+        }
+        
+        .hexagon-svg {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: 1;
+        }
+        
+        .hexagon-block {
+            stroke: none;  /* 删除描边 */
+            fill: #000000;  /* 黑色实心填充 */
+            fill-opacity: 1;
+        }
+        
+        /* Loading Text */
+        .loading-text {
+            position: fixed;  /* 改为fixed确保独立定位 */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            display: flex;
+            gap: 0.5rem;
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: bold;
+            letter-spacing: 0.5rem;
+            pointer-events: none;  /* 确保不影响其他元素 */
+        }
+        
+        .loading-char {
+            color: var(--primary);
+            display: inline-block;
+            /* 恢复无限循环动画 */
+            animation: loadingPulse 1.5s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+        
+        .loading-char:nth-child(1) { animation-delay: 0s; }
+        .loading-char:nth-child(2) { animation-delay: 0.1s; }
+        .loading-char:nth-child(3) { animation-delay: 0.2s; }
+        .loading-char:nth-child(4) { animation-delay: 0.3s; }
+        .loading-char:nth-child(5) { animation-delay: 0.4s; }
+        .loading-char:nth-child(6) { animation-delay: 0.5s; }
+        .loading-char:nth-child(7) { animation-delay: 0.6s; }
+        
+        @keyframes loadingPulse {
+            0%, 100% { 
+                transform: translateY(0) scale(1);
+                opacity: 0.5;
+            }
+            50% { 
+                transform: translateY(-10px) scale(1.2);
+                opacity: 1;
+            }
+        }
+        
+        /* 初始状态时的全屏遮罩 */
+        .hexagon-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000000;  /* 黑色背景 */
+            z-index: 9998;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem !important;
+            }
+            
+            .terminal {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body onload="window.scrollTo(0, 0);">
+    <!-- Hexagon Backdrop -->
+    <div class="hexagon-backdrop" id="hexagonBackdrop"></div>
+    
+    <!-- Hexagon Matrix Loader -->
+    <div class="hexagon-loader" id="hexagonLoader">
+        <svg class="hexagon-svg" viewBox="-100 -400 2400 2000" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <polygon id="loading_hexagon" points="0,-50 43.3,-25 43.3,25 0,50 -43.3,25 -43.3,-25" />
+            </defs>
+        </svg>
+        <!-- Loading Text (moved after SVG) -->
+        <div class="loading-text" id="loadingText">
+            <span class="loading-char">L</span>
+            <span class="loading-char">O</span>
+            <span class="loading-char">A</span>
+            <span class="loading-char">D</span>
+            <span class="loading-char">I</span>
+            <span class="loading-char">N</span>
+            <span class="loading-char">G</span>
+        </div>
+    </div>
+    
+    <!-- Matrix Rain Background -->
+    <canvas class="matrix-rain" id="matrix"></canvas>
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl font-bold" style="font-family: var(--font-display); color: var(--primary);">
+                    <span class="glitch" data-text="<DEV/>"><DEV/></span>
+                </span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link hover:text-cyan-400 transition-colors">首页</a>
+                <a href="#about" class="nav-link hover:text-cyan-400 transition-colors">关于</a>
+                <a href="#education" class="nav-link hover:text-cyan-400 transition-colors">教育</a>
+                <a href="#skills" class="nav-link hover:text-cyan-400 transition-colors">技能</a>
+                <a href="#projects" class="nav-link hover:text-cyan-400 transition-colors">项目</a>
+                <a href="#terminal" class="nav-link hover:text-cyan-400 transition-colors">终端</a>
+                <a href="#contact" class="nav-link hover:text-cyan-400 transition-colors">联系</a>
+            </div>
+            <button class="md:hidden" id="menu-toggle">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen relative overflow-hidden" style="background: linear-gradient(135deg, #0a0e27 0%, #0f1629 50%, #0a0e27 100%);">
+        <!-- 动态网格背景 -->
+        <div class="absolute inset-0" style="background-image: linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px); background-size: 50px 50px; animation: grid-move 10s linear infinite;">
+        </div>
+        
+        <!-- 光晕效果 -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        
+        <div class="min-h-screen flex items-center justify-center">
+            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+                <!-- 左侧内容 -->
+                <div class="text-left z-10">
+                    <div class="inline-block px-4 py-2 mb-6 rounded-full border border-cyan-500/50 bg-cyan-500/10">
+                        <span class="text-sm" style="color: var(--primary);">正在寻找机会</span>
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-7xl font-bold mb-6" style="font-family: var(--font-display);">
+                        <span class="block text-white">你好，我是</span>
+                        <span class="block mt-2 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">万圆</span>
+                        <span class="block mt-2 text-3xl lg:text-5xl" style="color: var(--foreground-secondary);">前端开发工程师</span>
+                    </h1>
+                    
+                    <p class="text-lg mb-8" style="color: var(--foreground-secondary); line-height: 1.8;">
+                        专注于<span class="text-cyan-400 font-bold">前端开发</span>与<span class="text-purple-400 font-bold">AI技术</span>的融合应用，
+                        擅长构建高性能、用户友好的Web应用。
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <a href="#projects" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg font-bold hover:shadow-2xl hover:shadow-cyan-500/25 transition-all transform hover:scale-105">
+                            查看作品集
+                        </a>
+                        <button class="px-8 py-4 border-2 border-cyan-500/50 rounded-lg font-bold hover:bg-cyan-500/10 transition-all transform hover:scale-105">
+                            下载简历
+                        </button>
+                    </div>
+                    
+                    <!-- 技能标签 -->
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">React</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30">TypeScript</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-green-500/20 text-green-400 border border-green-500/30">Node.js</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/30">TensorFlow.js</span>
+                        <span class="px-3 py-1 text-xs rounded-full bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">Docker</span>
+                    </div>
+                </div>
+                
+                <!-- 右侧代码编辑器样式 -->
+                <div class="hidden lg:block">
+                    <div class="relative bg-gray-900/50 backdrop-blur-xl rounded-lg border border-cyan-500/30 p-6 shadow-2xl">
+                        <!-- 编辑器顶部栏 -->
+                        <div class="flex items-center mb-4">
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <div class="ml-4 text-xs" style="color: var(--foreground-secondary);">portfolio.js</div>
+                        </div>
+                        
+                        <!-- 代码内容 -->
+                        <pre class="text-sm" style="color: var(--foreground); font-family: var(--font-mono);">
+<span style="color: var(--primary);">const</span> developer = {
+  <span style="color: var(--accent);">name</span>: <span style="color: var(--warning);">"万圆"</span>,
+  <span style="color: var(--accent);">role</span>: <span style="color: var(--warning);">"前端开发工程师"</span>,
+  <span style="color: var(--accent);">location</span>: <span style="color: var(--warning);">"苏州"</span>,
+  <span style="color: var(--accent);">skills</span>: [
+    <span style="color: var(--warning);">"前端开发"</span>,
+    <span style="color: var(--warning);">"响应式设计"</span>,
+    <span style="color: var(--warning);">"AI/ML集成"</span>,
+    <span style="color: var(--warning);">"性能优化"</span>
+  ],
+  <span style="color: var(--accent);">passion</span>: <span style="color: var(--warning);">"创造美好的用户体验"</span>,
+  <span style="color: var(--accent);">isAvailable</span>: <span style="color: var(--primary);">true</span>
+};
+
+<span style="color: var(--secondary);">//  正在输入...</span><span class="cursor-blink">|</span>
+                        </pre>
+                    </div>
+                    
+                    <!-- 装饰性标签 -->
+                    <div class="flex justify-end mt-4 space-x-4">
+                        <div class="flex items-center space-x-2 text-sm" style="color: var(--foreground-secondary);">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            <span>在线</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-sm" style="color: var(--foreground-secondary);">
+                            <i data-lucide="coffee" class="w-4 h-4"></i>
+                            <span>代码中...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部滚动提示 -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+            <div class="floating">
+                <i data-lucide="mouse" class="w-6 h-6 mx-auto mb-2" style="color: var(--primary);"></i>
+                <span class="text-xs" style="color: var(--foreground-secondary);">滚动探索更多</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 relative">
+        <!-- ASCII Animation Container - Absolute position on left -->
+        <div class="ascii-about-container">
+            <pre class="asciibox"></pre>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h2 class="text-4xl font-bold text-center mb-12" style="font-family: var(--font-display);">
+                <span class="glitch" data-text="ABOUT ME">ABOUT ME</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="relative">
+                    <div class="w-64 h-64 mx-auto relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full blur-xl opacity-50"></div>
+                        <img src="avatar_optimized.jpg" alt="万圆的头像" class="relative rounded-full border-4 border-cyan-500/50 w-64 h-64 object-cover object-top">
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4" style="color: var(--primary);">Hello World! 👋</h3>
+                    <p class="text-lg mb-4 leading-relaxed" style="color: var(--foreground-secondary);">
+                        我是万圆，来自苏州的前端开发者，目前就读于苏州信息职业技术学院计算机应用技术专业。
+                        我热爱编程，善于学习新技术，注重代码质量和用户体验。
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="map-pin" class="w-5 h-5" style="color: var(--accent);"></i>
+                            <span>苏州市吴江区</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="briefcase" class="w-5 h-5" style="color: var(--accent);"></i>
+                            <span>前端开发</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="graduation-cap" class="w-5 h-5" style="color: var(--accent);"></i>
+                            <span>计算机应用技术</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-lucide="mail" class="w-5 h-5" style="color: var(--accent);"></i>
+                            <span>29xxxx8825@qq.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section id="education" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12" style="font-family: var(--font-display);">
+                <span class="glitch" data-text="EDUCATION">EDUCATION</span>
+            </h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-8 top-0 bottom-0 w-0.5" style="background: linear-gradient(180deg, var(--primary), var(--accent));"></div>
+                    
+                    <!-- Education Item -->
+                    <div class="relative flex items-start mb-8">
+                        <div class="absolute left-8 w-4 h-4 rounded-full transform -translate-x-1/2" style="background: var(--primary); box-shadow: 0 0 20px var(--primary);"></div>
+                        <div class="ml-20 flex-1">
+                            <div class="p-6 rounded-lg backdrop-blur-sm neon-border">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div>
+                                        <h3 class="text-xl font-bold" style="color: var(--primary);">苏州信息职业技术学院</h3>
+                                        <p class="text-lg mt-1" style="color: var(--accent);">计算机应用技术 - 大专</p>
+                                    </div>
+                                    <span class="text-sm px-3 py-1 rounded" style="background: var(--primary); color: var(--background); opacity: 0.9;">
+                                        2023.9 - 2026.6
+                                    </span>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <h4 class="font-bold mb-3" style="color: var(--foreground);">主修课程</h4>
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                        <div class="px-3 py-2 rounded text-sm text-center" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);">
+                                            数据结构与算法
+                                        </div>
+                                        <div class="px-3 py-2 rounded text-sm text-center" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);">
+                                            网络操作系统
+                                        </div>
+                                        <div class="px-3 py-2 rounded text-sm text-center" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);">
+                                            数据库技术
+                                        </div>
+                                        <div class="px-3 py-2 rounded text-sm text-center" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);">
+                                            前端设计开发
+                                        </div>
+                                        <div class="px-3 py-2 rounded text-sm text-center" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);">
+                                            信息采集技术
+                                        </div>
+                                        <div class="px-3 py-2 rounded text-sm text-center" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);">
+                                            数据分析方法
+                                        </div>
+                                        <div class="px-3 py-2 rounded text-sm text-center" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);">
+                                            交换路由技术
+                                        </div>
+                                        <div class="px-3 py-2 rounded text-sm text-center" style="background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3);">
+                                            系统部署运维
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6" style="background: var(--background-secondary);">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12" style="font-family: var(--font-display);">
+                <span class="glitch" data-text="SKILLS">SKILLS</span>
+            </h2>
+            
+            <!-- Core Skills -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-center" style="color: var(--primary);">核心能力</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="p-4 rounded-lg" style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.2);">
+                        <div class="flex items-center mb-2">
+                            <i data-lucide="code" class="w-5 h-5 mr-2" style="color: var(--primary);"></i>
+                            <span class="font-bold">前端开发</span>
+                        </div>
+                        <p class="text-sm" style="color: var(--foreground-secondary);">熟练使用 HTML、CSS、JavaScript 完成静态页面开发</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.2);">
+                        <div class="flex items-center mb-2">
+                            <i data-lucide="layers" class="w-5 h-5 mr-2" style="color: var(--primary);"></i>
+                            <span class="font-bold">React框架</span>
+                        </div>
+                        <p class="text-sm" style="color: var(--foreground-secondary);">掌握 React 前端框架，能完成模块功能开发与组件化搭建</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.2);">
+                        <div class="flex items-center mb-2">
+                            <i data-lucide="smartphone" class="w-5 h-5 mr-2" style="color: var(--primary);"></i>
+                            <span class="font-bold">响应式设计</span>
+                        </div>
+                        <p class="text-sm" style="color: var(--foreground-secondary);">运用 CSS 媒体查询与Flex布局实现跨端兼容</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.2);">
+                        <div class="flex items-center mb-2">
+                            <i data-lucide="git-branch" class="w-5 h-5 mr-2" style="color: var(--primary);"></i>
+                            <span class="font-bold">版本控制</span>
+                        </div>
+                        <p class="text-sm" style="color: var(--foreground-secondary);">掌握 Git 版本控制工具，具备团队协作开发经验</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.2);">
+                        <div class="flex items-center mb-2">
+                            <i data-lucide="cpu" class="w-5 h-5 mr-2" style="color: var(--primary);"></i>
+                            <span class="font-bold">TensorFlow.js</span>
+                        </div>
+                        <p class="text-sm" style="color: var(--foreground-secondary);">了解基础应用，能协助完成前端推荐模型的调用与调试</p>
+                    </div>
+                    <div class="p-4 rounded-lg" style="background: rgba(0, 212, 255, 0.05); border: 1px solid rgba(0, 212, 255, 0.2);">
+                        <div class="flex items-center mb-2">
+                            <i data-lucide="zap" class="w-5 h-5 mr-2" style="color: var(--primary);"></i>
+                            <span class="font-bold">性能优化</span>
+                        </div>
+                        <p class="text-sm" style="color: var(--foreground-secondary);">熟悉图片懒加载、按需加载与代码分割等优化方法</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Composite Skills -->
+            <div>
+                <h3 class="text-2xl font-bold mb-6 text-center" style="color: var(--secondary);">复合能力</h3>
+                
+                <!-- 10项复合能力列表 -->
+                <div class="grid lg:grid-cols-2 gap-4 mb-8">
+                    <!-- 左列 -->
+                    <div class="space-y-4">
+                        <!-- 1. 基础编程能力 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05)); border-left: 3px solid var(--primary);">
+                            <h5 class="font-bold mb-2" style="color: var(--primary);">1. 基础编程能力</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">掌握数组、链表、哈希表、堆栈、树与图等核心数据结构的原理与使用场景，具备使用Python进行数据处理与基础编程的能力。</p>
+                        </div>
+                        
+                        <!-- 2. 网络通信协议理解能力 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05)); border-left: 3px solid var(--primary);">
+                            <h5 class="font-bold mb-2" style="color: var(--primary);">2. 网络通信协议理解能力</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">理解TCP/IP模型、Wi-Fi、蜂窝通信、BGP路由等核心网络协议，了解云计算架构下的网络基础设施与数据传输机制，具备构建连接与排查通信问题的基础能力。</p>
+                        </div>
+                        
+                        <!-- 3. Linux系统操作能力 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05)); border-left: 3px solid var(--primary);">
+                            <h5 class="font-bold mb-2" style="color: var(--primary);">3. Linux系统操作能力</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">能够在Linux环境下完成磁盘管理、用户权限配置、网络设置等常规操作，熟悉文件系统与命令行工具，具备脚本自动化与远程运维的初步经验。</p>
+                        </div>
+                        
+                        <!-- 4. 人工智能应用能力 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05)); border-left: 3px solid var(--primary);">
+                            <h5 class="font-bold mb-2" style="color: var(--primary);">4. 人工智能应用能力</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">了解人工智能的发展路径与主流算法框架（如Transformer、多模态模型），初步掌握LLM调用、Prompt编写与图文生成工具的使用方法，具备AI基础素养与合规意识。</p>
+                        </div>
+                        
+                        <!-- 5. Agent智能体开发基础能力 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05)); border-left: 3px solid var(--primary);">
+                            <h5 class="font-bold mb-2" style="color: var(--primary);">5. Agent智能体开发基础能力</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">理解Agent的基本结构与工作机制，了解其在物联网、自动化控制和多任务协同中的应用模式，初步具备使用LangChain等主流框架实现简单任务编排和功能调用的能力。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 右列 -->
+                    <div class="space-y-4">
+                        <!-- 6. 计算机系统基础理解能力 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(255, 0, 110, 0.05), rgba(0, 212, 255, 0.05)); border-left: 3px solid var(--secondary);">
+                            <h5 class="font-bold mb-2" style="color: var(--secondary);">6. 计算机系统基础理解能力</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">具备从计算机底层结构（CPU架构、缓存设计、指令系统）到上层操作系统演进（Linux、虚拟化、边缘OS）的系统理解能力，能够初步分析软硬件协同机制与设备运行原理。</p>
+                        </div>
+                        
+                        <!-- 7. 嵌入式与边缘设备部署基础 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(255, 0, 110, 0.05), rgba(0, 212, 255, 0.05)); border-left: 3px solid var(--secondary);">
+                            <h5 class="font-bold mb-2" style="color: var(--secondary);">7. 嵌入式与边缘设备部署基础</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">了解物联网设备中的嵌入式系统架构，具备边缘设备操作系统、驱动管理与资源调度机制的基本认知，能够协助完成设备配置与系统调优任务。</p>
+                        </div>
+                        
+                        <!-- 8. 版本管理与协同开发能力 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(255, 0, 110, 0.05), rgba(0, 212, 255, 0.05)); border-left: 3px solid var(--secondary);">
+                            <h5 class="font-bold mb-2" style="color: var(--secondary);">8. 版本管理与协同开发能力</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">掌握Git的本地提交、远程仓库操作流程，具备多人协作开发、代码评审与冲突解决的工作经验。</p>
+                        </div>
+                        
+                        <!-- 9. 自动化脚本应用能力 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(255, 0, 110, 0.05), rgba(0, 212, 255, 0.05)); border-left: 3px solid var(--secondary);">
+                            <h5 class="font-bold mb-2" style="color: var(--secondary);">9. 自动化脚本应用能力</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">会使用Python对本地数据进行基础处理、接口调用任务，能够使用小型自动化工具来提升开发与运维效率，具备基础的异常处理与日志记录能力。</p>
+                        </div>
+                        
+                        <!-- 10. 持续学习能力 -->
+                        <div class="p-4 rounded-lg backdrop-blur-sm" style="background: linear-gradient(135deg, rgba(255, 0, 110, 0.05), rgba(0, 212, 255, 0.05)); border-left: 3px solid var(--secondary);">
+                            <h5 class="font-bold mb-2" style="color: var(--secondary);">10. 持续学习能力</h5>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">关注技术前沿趋势，如扩散模型、多模态大模型等方向，具备持续学习的意愿与主动探索的习惯，能够主动跟进新技术动态并将其应用于实际学习或项目尝试中。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tech Stack Icons -->
+            <div class="flex flex-wrap justify-center gap-4 mt-8">
+                <div class="tech-icon p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="w-12 h-12">
+                </div>
+                <div class="tech-icon p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-12 h-12">
+                </div>
+                <div class="tech-icon p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" class="w-12 h-12">
+                </div>
+                <div class="tech-icon p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-12 h-12">
+                </div>
+                <div class="tech-icon p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" class="w-12 h-12">
+                </div>
+                <div class="tech-icon p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="w-12 h-12">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="project-wrapper">
+        <div class="project-container">
+            <div class="project-title">
+                <h2 class="text-4xl font-bold" style="font-family: var(--font-display);">
+                    <span class="glitch" data-text="PROJECTS">PROJECTS</span>
+                </h2>
+            </div>
+            <div class="project-cardsbox">
+                <!-- Project 1: 销售数据可视化 -->
+                <div class="project-card relative h-80 cursor-pointer transform transition-all hover:scale-105 overflow-hidden rounded-lg" 
+                     onclick="openProjectModal('visualization')">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0">
+                        <img src="public/某公司销售数据与市场趋势可视化项目/销售数据可视化项目-总图.jpg" 
+                             alt="销售数据可视化" 
+                             class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="relative w-full h-full p-4 rounded-lg neon-border backdrop-blur-sm" style="background: linear-gradient(to bottom, rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.95));">
+                        <div class="flex flex-col h-full">
+                            <div class="text-cyan-400 mb-2">
+                                <i data-lucide="bar-chart-3" class="w-10 h-10"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">销售数据可视化</h3>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">ECharts+Three.js实时数据展示平台</p>
+                            <div class="mt-2 text-sm" style="color: var(--accent);">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    <span>2023.5 - 2024.9</span>
+                                </div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="user" class="w-4 h-4"></i>
+                                    <span>AI应用前端开发助理</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="building" class="w-4 h-4"></i>
+                                    <span>xxx智能科技有限公司</span>
+                                </div>
+                            </div>
+                            <div class="mt-auto pt-2">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-xs px-2 py-1 rounded bg-cyan-500/20 text-cyan-400">Vue.js</span>
+                                    <span class="text-xs px-2 py-1 rounded bg-cyan-500/20 text-cyan-400">ECharts</span>
+                                    <span class="text-xs px-2 py-1 rounded bg-cyan-500/20 text-cyan-400">Socket.io</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: 智能购物网站 -->
+                <div class="project-card relative h-80 cursor-pointer transform transition-all hover:scale-105 overflow-hidden rounded-lg" 
+                     onclick="openProjectModal('shopping')">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0">
+                        <img src="public/智能购物网站前端开发与AI优化集成项目/智能购物网站前端开发与AI优化集成项目-主图.jpeg" 
+                             alt="智能购物网站" 
+                             class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="relative w-full h-full p-4 rounded-lg neon-border backdrop-blur-sm" style="background: linear-gradient(to bottom, rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.95));">
+                        <div class="flex flex-col h-full">
+                            <div class="text-purple-400 mb-2">
+                                <i data-lucide="shopping-cart" class="w-10 h-10"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">智能购物网站</h3>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">AI推荐系统电商平台前端</p>
+                            <div class="mt-2 text-sm" style="color: var(--accent);">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    <span>2023.5 - 2024.9</span>
+                                </div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="user" class="w-4 h-4"></i>
+                                    <span>前端开发工程师</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="building" class="w-4 h-4"></i>
+                                    <span>xxx电商有限公司</span>
+                                </div>
+                            </div>
+                            <div class="mt-auto pt-2">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-xs px-2 py-1 rounded bg-purple-500/20 text-purple-400">React</span>
+                                    <span class="text-xs px-2 py-1 rounded bg-purple-500/20 text-purple-400">TensorFlow.js</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: AI大模型训练 -->
+                <div class="project-card relative h-80 cursor-pointer transform transition-all hover:scale-105 overflow-hidden rounded-lg" 
+                     onclick="openProjectModal('aimodel')">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0">
+                        <img src="public/大规模AI模型训练与部署全链路实战/AI大模型训练工程化实战项目-主图.png" 
+                             alt="AI大模型训练" 
+                             class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="relative w-full h-full p-4 rounded-lg neon-border backdrop-blur-sm" style="background: linear-gradient(to bottom, rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.95));">
+                        <div class="flex flex-col h-full">
+                            <div class="text-green-400 mb-2">
+                                <i data-lucide="brain" class="w-10 h-10"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">AI大模型训练</h3>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">MLOps全流程工程化实战</p>
+                            <div class="mt-2 text-sm" style="color: var(--accent);">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    <span>2023.5 - 2024.10</span>
+                                </div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="user" class="w-4 h-4"></i>
+                                    <span>AI训练工程师助理</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="building" class="w-4 h-4"></i>
+                                    <span>xxx人工智能公司</span>
+                                </div>
+                            </div>
+                            <div class="mt-auto pt-2">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-xs px-2 py-1 rounded bg-green-500/20 text-green-400">PyTorch</span>
+                                    <span class="text-xs px-2 py-1 rounded bg-green-500/20 text-green-400">K8s</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: 数据库优化 -->
+                <div class="project-card relative h-80 cursor-pointer transform transition-all hover:scale-105 overflow-hidden rounded-lg" 
+                     onclick="openProjectModal('database')">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0">
+                        <img src="public/大型电商交易系统数据库架构优化与性能提升项目/大型电商交易系统数据库架构优化与性能提升项目-主图.jpeg" 
+                             alt="数据库架构优化" 
+                             class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="relative w-full h-full p-4 rounded-lg neon-border backdrop-blur-sm" style="background: linear-gradient(to bottom, rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.95));">
+                        <div class="flex flex-col h-full">
+                            <div class="text-yellow-400 mb-2">
+                                <i data-lucide="database" class="w-10 h-10"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">数据库架构优化</h3>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">大型电商系统性能提升</p>
+                            <div class="mt-2 text-sm" style="color: var(--accent);">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    <span>2023.5 - 2024.10</span>
+                                </div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="user" class="w-4 h-4"></i>
+                                    <span>数据库优化实习生</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="building" class="w-4 h-4"></i>
+                                    <span>xxx数据技术有限公司</span>
+                                </div>
+                            </div>
+                            <div class="mt-auto pt-2">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-xs px-2 py-1 rounded bg-yellow-500/20 text-yellow-400">MySQL</span>
+                                    <span class="text-xs px-2 py-1 rounded bg-yellow-500/20 text-yellow-400">Redis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5: 安全测试 -->
+                <div class="project-card relative h-80 cursor-pointer transform transition-all hover:scale-105 overflow-hidden rounded-lg" 
+                     onclick="openProjectModal('security')">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0">
+                        <img src="public/智能门锁的系统安全测试项目/智能门锁的系统安全测试项目-主图.jpg" 
+                             alt="智能门锁安全测试" 
+                             class="w-full h-full object-cover opacity-80">
+                    </div>
+                    <div class="relative w-full h-full p-4 rounded-lg neon-border backdrop-blur-sm" style="background: linear-gradient(to bottom, rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.95));">
+                        <div class="flex flex-col h-full">
+                            <div class="text-red-400 mb-2">
+                                <i data-lucide="shield" class="w-10 h-10"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">智能门锁安全测试</h3>
+                            <p class="text-sm" style="color: var(--foreground-secondary);">系统安全渗透与加密验证</p>
+                            <div class="mt-2 text-sm" style="color: var(--accent);">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    <span>2023.5 - 2024.11</span>
+                                </div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <i data-lucide="user" class="w-4 h-4"></i>
+                                    <span>安全测试工程师</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="building" class="w-4 h-4"></i>
+                                    <span>xxx科技有限公司</span>
+                                </div>
+                            </div>
+                            <div class="mt-auto pt-2">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-xs px-2 py-1 rounded bg-red-500/20 text-red-400">Python</span>
+                                    <span class="text-xs px-2 py-1 rounded bg-red-500/20 text-red-400">Burp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Personal Summary Section -->
+    <section id="summary" class="py-20 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, #0f1629 0%, #0a0e27 100%);">
+        <!-- 背景装饰 -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-5xl mx-auto relative z-10">
+            <h2 class="text-5xl font-bold text-center mb-16" style="font-family: var(--font-display);">
+                <span class="glitch" data-text="个人总结">个人总结</span>
+            </h2>
+            
+            <div class="relative">
+                <!-- 左侧引号装饰 -->
+                <div class="absolute -left-8 -top-8 text-8xl opacity-20" style="color: var(--primary); font-family: var(--font-display);">“</div>
+                
+                <!-- 主要内容卡片 -->
+                <div class="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-10 border border-cyan-500/30 shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500">
+                    <!-- 动态边框效果 -->
+                    <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 opacity-0 hover:opacity-20 transition-opacity duration-500 blur-xl"></div>
+                    
+                    <!-- 文字内容 -->
+                    <div class="relative space-y-6">
+                        <p class="text-xl leading-loose" style="color: var(--foreground); text-indent: 2em;">
+                            我是一名<span class="text-cyan-400 font-bold">即将毕业的大专生</span>，具备前端开发的基础能力和良好的学习态度。
+                        </p>
+                        <p class="text-xl leading-loose" style="color: var(--foreground); text-indent: 2em;">
+                            在实习中，我不仅<span class="text-purple-400 font-bold">完成了指导老师安排的开发与调试任务</span>，还积极参与小组讨论与代码评审，逐步提升了自己在项目协作、问题解决和代码规范方面的能力。
+                        </p>
+                        <p class="text-xl leading-loose" style="color: var(--foreground); text-indent: 2em;">
+                            虽然经验尚浅，但我对前端开发<span class="text-green-400 font-bold">充满热情</span>，愿意不断学习新技术并快速适应岗位需求，希望能在贵公司获得<span class="text-yellow-400 font-bold">成长与实践的机会</span>。
+                        </p>
+                    </div>
+                    
+                    <!-- 底部装饰线 -->
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+                </div>
+                
+                <!-- 右侧引号装饰 -->
+                <div class="absolute -right-8 -bottom-8 text-8xl opacity-20 rotate-180" style="color: var(--primary); font-family: var(--font-display);">“</div>
+            </div>
+            
+            <!-- 底部装饰元素 -->
+            <div class="flex justify-center mt-12 space-x-8">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                    <span class="text-sm" style="color: var(--foreground-secondary);">积极学习</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+                    <span class="text-sm" style="color: var(--foreground-secondary);">团队协作</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+                    <span class="text-sm" style="color: var(--foreground-secondary);">持续成长</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-12" style="font-family: var(--font-display);">
+                <span class="glitch" data-text="CONNECT">CONNECT</span>
+            </h2>
+            
+            <p class="text-xl mb-8" style="color: var(--foreground-secondary);">
+                让我们一起创造下一个伟大的项目
+            </p>
+            
+            <div class="flex justify-center space-x-6 mb-12">
+                <a href="#" class="group relative p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <i data-lucide="github" class="w-8 h-8"></i>
+                    <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">GitHub</span>
+                </a>
+                <a href="#" class="group relative p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <i data-lucide="linkedin" class="w-8 h-8"></i>
+                    <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">LinkedIn</span>
+                </a>
+                <a href="#" class="group relative p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <i data-lucide="mail" class="w-8 h-8"></i>
+                    <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">Email</span>
+                </a>
+                <a href="#" class="group relative p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <i data-lucide="twitter" class="w-8 h-8"></i>
+                    <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">Twitter</span>
+                </a>
+                <a href="#" class="group relative p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-all transform hover:scale-110">
+                    <i data-lucide="message-circle" class="w-8 h-8"></i>
+                    <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity">WeChat</span>
+                </a>
+            </div>
+            
+            <div class="inline-block">
+                <button class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105">
+                    发送消息
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 text-center border-t" style="border-color: var(--border);">
+        <p style="color: var(--foreground-secondary);">
+            © 2024 智能开发工程师. Built with <span style="color: var(--secondary);">❤</span> and <span style="color: var(--primary);">Code</span>
+        </p>
+    </footer>
+    
+    <!-- ASCII Animation Library -->
+    <script type="module">
+        import { parseGIF, decompressFrames } from 'https://cdn.jsdelivr.net/npm/gifuct-js@2.1.2/+esm';
+        
+        // 页面加载完成后再次确保回到顶部
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+        }, 0);
+        
+        // 等待DOM加载完成
+        window.addEventListener('DOMContentLoaded', () => {
+            const asciibox = {
+                container: document.querySelector(".asciibox"),
+                width: 0,
+                height: 0,
+                scale_nums: 8,  // 调整缩放数值，平衡大小和细节
+                texts: [],
+                current_text_index: 0,
+                init() {
+                    if (!this.container) {
+                        console.error('ASCII container not found');
+                        return;
+                    }
+                    
+                    // 显示加载中文本
+                    this.container.innerText = '加载中...';
+                    
+                    fetch("/Yu5t.gif")
+                        .then((resp) => {
+                            if (!resp.ok) {
+                                throw new Error(`HTTP error! status: ${resp.status}`);
+                            }
+                            return resp.arrayBuffer();
+                        })
+                        .then((buff) => {
+                            const gif = parseGIF(buff);
+                            this.width = gif.lsd.width;
+                            this.height = gif.lsd.height;
+                            
+                            const frames = decompressFrames(gif, true);
+                            console.log(`ASCII: Processing ${frames.length} frames, size: ${this.width}x${this.height}`);
+                            
+                            frames.forEach((frame, index) => {
+                                const canvas = document.createElement("canvas");
+                                const ctx = canvas.getContext("2d");
+                                // 使用完整GIF尺寸的画布
+                                canvas.width = this.width;
+                                canvas.height = this.height;
+                                
+                                // 先清空画布，确保背景是透明的
+                                ctx.clearRect(0, 0, this.width, this.height);
+                                
+                                // 将帧数据放在正确的位置
+                                const image_data = new ImageData(
+                                    frame.patch,
+                                    frame.dims.width,
+                                    frame.dims.height
+                                );
+                                
+                                // 在正确的偏移位置绘制帧
+                                ctx.putImageData(image_data, frame.dims.left || 0, frame.dims.top || 0);
+                                
+                                // 读取完整画布的数据
+                                this.create_texts(ctx.getImageData(0, 0, this.width, this.height).data);
+                            });
+                            
+                            if (this.texts.length > 0) {
+                                console.log(`ASCII: Animation ready with ${this.texts.length} frames`);
+                                
+                                // 检查并过滤异常帧
+                                this.texts = this.texts.filter((frame, index) => {
+                                    const nonSpaceCount = (frame.match(/[^ \n]/g) || []).length;
+                                    const totalChars = frame.replace(/\n/g, '').length;
+                                    
+                                    // 如果某帧超过70%都是非空格字符，可能是异常帧
+                                    if (totalChars > 0 && nonSpaceCount / totalChars > 0.7) {
+                                        console.log(`Removing potentially corrupted frame ${index}`);
+                                        return false;
+                                    }
+                                    return true;
+                                });
+                                
+                                // 调整帧率为100ms，更接近原GIF的速度
+                                setInterval(() => {
+                                    this.current_text_index = (this.current_text_index + 1) % this.texts.length;
+                                    this.container.innerText = this.texts[this.current_text_index];
+                                }, 100);
+                            } else {
+                                console.error('No ASCII frames generated');
+                                this.container.innerText = 'Error: No frames';
+                            }
+                        })
+                        .catch(error => {
+                            console.error('ASCII animation error:', error);
+                            this.container.innerText = 'Loading failed';
+                        });
+                },
+                create_texts(data) {
+                    let text = "";
+                    
+                    for (let y = 0; y < this.height; y += this.scale_nums) {
+                        let row = "";
+                        for (let x = 0; x < this.width; x += this.scale_nums) {
+                            const i = (y * this.width + x) * 4;
+                            const r = data[i];
+                            const g = data[i + 1];
+                            const b = data[i + 2];
+                            const a = data[i + 3];
+                            
+                            // 检查是否为背景：透明或纯黑色
+                            if (a < 50) {
+                                // 透明背景
+                                row += " ";
+                                continue;
+                            }
+                            
+                            // 纯黑色背景也应该显示为空格
+                            if (r < 10 && g < 10 && b < 10) {
+                                row += " ";
+                                continue;
+                            }
+                            
+                            // 分析颜色特征而不只是亮度
+                            const avg = (r + g + b) / 3;
+                            const isGray = Math.abs(r - g) < 20 && Math.abs(g - b) < 20 && Math.abs(r - b) < 20;
+                            const isPink = r > g && r > b && r > 150;
+                            
+                            let char = " ";
+                            
+                            // 根据颜色和亮度选择字符
+                            if (a < 100) {
+                                // 半透明边缘
+                                char = "·";
+                            } else if (isGray && avg < 100) {
+                                // 深灰色轮廓
+                                char = "|";
+                            } else if (isGray && avg < 150) {
+                                // 中灰色轮廓
+                                char = "/";
+                            } else if (isGray && avg < 200) {
+                                // 浅灰色
+                                char = "-";
+                            } else if (isPink && avg > 200) {
+                                // 亮粉色（肉垫高光）
+                                char = "@";
+                            } else if (isPink && avg > 150) {
+                                // 中粉色（肉垫主体）
+                                char = "0";
+                            } else if (isPink && avg > 100) {
+                                // 暗粉色（肉垫阴影）
+                                char = "o";
+                            } else if (avg > 240) {
+                                // 纯白高光
+                                char = "*";
+                            } else if (avg > 200) {
+                                // 很亮
+                                char = "+";
+                            } else if (avg > 150) {
+                                // 中亮
+                                char = "=";
+                            } else if (avg > 100) {
+                                // 中等
+                                char = ".";
+                            } else if (avg > 50) {
+                                // 暗
+                                char = ",";
+                            }
+                            
+                            row += char;
+                        }
+                        text += row + "\n";
+                    }
+                    this.texts.push(text);
+                }
+            };
+            
+            // 初始化ASCII动画
+            asciibox.init();
+        });
+    </script>
+    
+    <script>
+        // Hexagon Matrix Loading Effect
+        const hexagonLoader = {
+            row: 35,  // 大幅增加数量以覆盖全屏
+            line: 35,  // 增加行数以覆盖上移后的空间
+            container: null,
+            svg: null,
+            blocks: [],
+            loaderElement: null,
+            init() {
+                this.loaderElement = document.getElementById('hexagonLoader');
+                this.svg = this.loaderElement.querySelector('.hexagon-svg');
+                this.createBlocks();
+                
+                // Start animation after page loads
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        this.animate();
+                    }, 300); // 减少延迟时间
+                });
+            },
+            createBlocks() {
+                // 计算合适的间距以覆盖全屏，适配更大的六边形
+                const hexWidth = 86.6;  // 六边形宽度
+                const hexHeight = 75;   // 六边形高度
+                const offsetX = -100;    // 起始X偏移（负值，从屏幕外开始）
+                const offsetY = -400;    // 起始Y偏移（更大的负值，使矩阵整体上移）
+                
+                for (let l = 0; l < this.line; l++) {
+                    let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                    for (let r = 0; r < this.row; r++) {
+                        let use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+                        use.setAttribute("class", "hexagon-block");
+                        use.setAttribute("href", "#loading_hexagon");
+                        // 蜂窝状排列，奇数行偏移
+                        use.setAttribute("x", `${l % 2 ? hexWidth * r + offsetX : hexWidth * r + offsetX + hexWidth/2}`);
+                        use.setAttribute("y", `${hexHeight * l + offsetY}`);
+                        use.setAttribute("transform-origin", "50 50");
+                        g.appendChild(use);
+                        this.blocks.push(use);
+                    }
+                    this.svg.appendChild(g);
+                }
+            },
+            animate() {
+                const timeline = gsap.timeline();
+                const backdrop = document.getElementById('hexagonBackdrop');
+                const loadingText = document.getElementById('loadingText');
+                
+                // 初始化loading文字立即显示，字符动画已经在CSS中运行
+                gsap.set(loadingText, { opacity: 1, scale: 1 });
+                
+                // 第一阶段：蜂窝从左上角波浪式出现（同时loading文字保持显示）
+                timeline
+                    .set(this.blocks, {
+                        "fill-opacity": 0,
+                        scale: 0,
+                        rotation: () => Math.random() * 360  // 随机旋转
+                    })
+                    .to(this.blocks, {
+                        "fill-opacity": 1,
+                        scale: 1,
+                        rotation: 0,
+                        duration: 0.8,  // 减少出现动画时间
+                        ease: "power4.out",
+                        stagger: {
+                            from: "start",  // 从左上角开始
+                            grid: "auto",
+                            each: 0.001,  // 减少间隔
+                            amount: 0.8  // 减少总时间
+                        }
+                    })
+                    // 保持一段时间，让loading动画继续播放
+                    .to({}, { 
+                        duration: 1  // 减少等待时间
+                    })
+                    // 隐藏loading文字（在蜂窝开始消失前）
+                    .to(loadingText, {
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 0.3,  // 减少时间
+                        ease: "power2.in"
+                    })
+                    // 淡出背景遮罩，让页面内容开始显示
+                    .to(backdrop, {
+                        opacity: 0,
+                        duration: 0.3,  // 减少时间
+                        ease: "power2.out",
+                        onComplete: () => {
+                            backdrop.style.display = 'none';
+                        }
+                    }, "-=0.2")
+                    // 第二阶段：蜂窝消失动画（从中心向外消散）
+                    .to(this.blocks, {
+                        scale: 0,
+                        "fill-opacity": 0,
+                        "stroke-opacity": 0,
+                        duration: 1,  // 减少消失动画时间
+                        ease: "power2.out",
+                        stagger: {
+                            from: "center",
+                            each: 0.001  // 进一步减少间隔
+                        }
+                    }, "-=0.3")
+                    // 第三阶段：移除加载器
+                    .set(this.loaderElement, {
+                        display: 'none',
+                        onComplete: () => {
+                            // Initialize other animations after loader completes
+                            initializePageAnimations();
+                        }
+                    });
+            }
+        };
+        
+        // Wait for GSAP to load before registering plugins
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+        }
+        
+        // Initialize hexagon loader immediately
+        hexagonLoader.init();
+        
+        // Wrap other initializations in a function
+        function initializePageAnimations() {
+            // Initialize Lucide icons
+            lucide.createIcons();
+            
+            // Initialize Lenis smooth scroll
+            const lenis = new Lenis({
+                duration: 1,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+                autoRaf: true,
+            });
+            
+            // Initialize horizontal scroll
+            setTimeout(() => {
+                initHorizontalScroll();
+            }, 100); // 小延迟确保DOM完全加载
+            
+            // Start other animations
+            if (typeof drawMatrix !== 'undefined') {
+                // Matrix rain is already running
+            }
+        }
+        
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-fixed');
+            } else {
+                navbar.classList.remove('nav-fixed');
+            }
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+        
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+        
+        const drops = [];
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 14, 39, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff88';
+            ctx.font = fontSize + 'px monospace';
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 35);
+        
+        // Terminal interaction
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalContent = document.getElementById('terminal-content');
+
+        if (terminalInput) {
+            terminalInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const command = e.target.value;
+                if (command) {
+                    const newLine = document.createElement('div');
+                    newLine.className = 'terminal-line';
+                    newLine.textContent = `$ ${command}`;
+                    
+                    const response = document.createElement('div');
+                    response.className = 'terminal-line';
+                    response.style.animationDelay = '0.5s';
+                    
+                    switch(command.toLowerCase()) {
+                        case 'help':
+                            response.textContent = '> 可用命令: help, skills, contact, clear';
+                            break;
+                        case 'skills':
+                            response.innerHTML = '> <span style="color: var(--primary);">前端:</span> React, Vue, TypeScript<br>> <span style="color: var(--secondary);">后端:</span> Python, Node.js, Go<br>> <span style="color: var(--accent);">其他:</span> Docker, K8s, AI/ML';
+                            break;
+                        case 'contact':
+                            response.textContent = '> Email: developer@example.com';
+                            break;
+                        case 'clear':
+                            terminalContent.innerHTML = '';
+                            terminalContent.appendChild(terminalInput.parentElement);
+                            e.target.value = '';
+                            return;
+                        default:
+                            response.textContent = `> Command not found: ${command}`;
+                    }
+                    
+                    terminalContent.insertBefore(newLine, terminalInput.parentElement);
+                    terminalContent.insertBefore(response, terminalInput.parentElement);
+                    e.target.value = '';
+                    
+                    // Scroll to bottom
+                    terminalContent.scrollTop = terminalContent.scrollHeight;
+                }
+            }
+        });
+        }
+        
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+            // Add mobile menu logic here
+            alert('Mobile menu would open here');
+        });
+        }
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+        
+        // Window resize handler
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+    <!-- Project Modal -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeProjectModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative w-full h-full flex items-center justify-center p-6">
+            <div class="bg-gray-900 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-hidden" style="border: 1px solid var(--primary);">
+                <!-- Modal Header -->
+                <div class="px-6 py-4 border-b" style="border-color: var(--border);">
+                    <div class="flex items-center justify-between">
+                        <h3 id="modalTitle" class="text-2xl font-bold" style="color: var(--primary);">项目详情</h3>
+                        <button onclick="closeProjectModal()" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Tab Navigation -->
+                    <div class="flex space-x-6 mt-4">
+                        <button class="tab-btn active text-sm font-medium pb-2 border-b-2 transition-colors" 
+                                style="border-color: var(--primary); color: var(--primary);"
+                                onclick="switchTab(event, 'flow1')" data-tab="flow1">
+                            流程一
+                        </button>
+                        <button class="tab-btn text-sm font-medium pb-2 border-b-2 border-transparent transition-colors text-gray-400 hover:text-white"
+                                onclick="switchTab(event, 'flow2')" data-tab="flow2">
+                            流程二
+                        </button>
+                        <button class="tab-btn text-sm font-medium pb-2 border-b-2 border-transparent transition-colors text-gray-400 hover:text-white"
+                                onclick="switchTab(event, 'flow3')" data-tab="flow3">
+                            流程三
+                        </button>
+                        <button class="tab-btn text-sm font-medium pb-2 border-b-2 border-transparent transition-colors text-gray-400 hover:text-white"
+                                onclick="switchTab(event, 'flow4')" data-tab="flow4">
+                            流程四
+                        </button>
+                        <button class="tab-btn text-sm font-medium pb-2 border-b-2 border-transparent transition-colors text-gray-400 hover:text-white"
+                                onclick="switchTab(event, 'flow5')" data-tab="flow5">
+                            流程五
+                        </button>
+                        <button class="tab-btn text-sm font-medium pb-2 border-b-2 border-transparent transition-colors text-gray-400 hover:text-white"
+                                onclick="switchTab(event, 'flow6')" data-tab="flow6">
+                            流程六
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Modal Body -->
+                <div class="p-6 overflow-y-auto" style="max-height: calc(90vh - 180px);">
+                    <div id="modalContent" class="grid md:grid-cols-2 gap-6">
+                        <!-- Left: Image -->
+                        <div class="rounded-lg overflow-hidden bg-gray-800" style="height: 400px;">
+                            <img id="modalImage" src="" alt="项目流程图" class="w-full h-full object-contain">
+                        </div>
+                        
+                        <!-- Right: Content -->
+                        <div>
+                            <h4 id="modalFlowTitle" class="text-xl font-bold mb-4" style="color: var(--primary);">流程概述</h4>
+                            <p id="modalFlowDesc" class="text-sm mb-6" style="color: var(--foreground-secondary);">
+                                <!-- Flow description will be inserted here -->
+                            </p>
+                            
+                            <h5 class="text-lg font-bold mb-3" style="color: var(--secondary);">工作内容</h5>
+                            <ul id="modalWorkContent" class="space-y-2 text-sm" style="color: var(--foreground);">
+                                <!-- Work content will be inserted here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Styles -->
+    <style>
+        #projectModal {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        #projectModal.hidden {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Horizontal Scrolling - From GitHub Project 007-03 */
+        .project-wrapper {
+            position: relative;
+            width: 100%;
+            background: #0a0e27;
+        }
+        
+        .project-container {
+            position: sticky;
+            top: 64px; /* 固定在导航栏底部 */
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: calc(100vh - 64px); /* 高度减去导航栏高度 */
+            background: #0a0e27;
+            overflow: hidden;
+        }
+        
+        .project-title {
+            position: absolute;
+            top: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+        
+        .project-cardsbox {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding-left: 5rem;
+            padding-right: 5rem;
+        }
+        
+        .project-card {
+            position: relative;
+            width: 700px;
+            height: 500px;
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        
+        .project-card .relative {
+            height: 100%;
+            padding: 2rem !important;
+        }
+        
+        .project-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-card p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+        }
+        
+        .project-card i {
+            width: 60px !important;
+            height: 60px !important;
+        }
+        
+        .project-card .flex-wrap span {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        
+        .tab-btn {
+            position: relative;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary) !important;
+            border-color: var(--primary) !important;
+        }
+    </style>
+    
+    <!-- Project Modal Script -->
+    <script>
+        // Project data
+        const projectData = {
+            visualization: {
+                title: "销售数据与市场趋势可视化项目",
+                flows: {
+                    flow1: {
+                        title: "分析需求与制定技术方案",
+                        desc: "在项目初期，协助完成业务需求分析与数据结构评估，参与制定整体技术架构，确保系统功能目标与技术路径一致。",
+                        image: "public/某公司销售数据与市场趋势可视化项目/流程一：分析需求与制定技术方案.jpg",
+                        content: [
+                            "数据源梳理与标准化：协助整理CSV、JSON及数据库接口格式，统一字段规则，避免后续图表渲染异常。",
+                            "关键指标提取支持：配合分析销售额、区域排名、客户增长等维度，汇总需求文档供开发团队使用。",
+                            "技术框架资料整理：协助比较ECharts、Three.js、Cesium的优缺点，辅助确定组合架构。",
+                            "交互逻辑草图绘制：参与绘制用户操作流程图，包括数据切换、拖拽与点击查看细节。"
+                        ]
+                    },
+                    flow2: {
+                        title: "设计前端界面与布局结构",
+                        desc: "协助完成前端界面设计与布局划分，确保大屏可视化界面在多端设备下均具备一致性与美观度。",
+                        image: "public/某公司销售数据与市场趋势可视化项目/流程二：设计前端界面与布局结构.jpg",
+                        content: [
+                            "模块化布局图绘制：参与构建Flexbox+Grid布局方案，划分导航区、核心区与侧边图表区。",
+                            "视觉风格辅助设计：协助整理品牌色彩、字体与背景素材，统一平台整体视觉效果。",
+                            "组件封装测试：配合前端工程师，完成趋势图、地图、3D模型等组件的初步封装测试。",
+                            "图表区域配置支持：在布局设计中协助配置柱状图、折线图与饼图位置，保证视觉均衡性。"
+                        ]
+                    },
+                    flow3: {
+                        title: "开发交互图表与可视化模块",
+                        desc: "在开发阶段，协助构建交互式图表与3D可视化模块，提升用户对销售数据的沉浸感与操作自由度。",
+                        image: "public/某公司销售数据与市场趋势可视化项目/流程三：开发交互图表与可视化模块.jpg",
+                        content: [
+                            "Three.js模型调试：协助加载与旋转产品3D模型，测试点击、缩放、拖拽交互的流畅度。",
+                            "图表联动逻辑实现：在ECharts中完成柱状图、折线图与饼图的联动测试，确保数据同步更新。",
+                            "地理销售分布实现：配合使用Cesium加载地区销售数据点，验证缩放与旋转视角下的展示效果。",
+                            "tooltip与缩放功能调试：在图表中实现点击查看详情与时间区间缩放功能，保证交互稳定。"
+                        ]
+                    },
+                    flow4: {
+                        title: "集成实时数据与动态更新机制",
+                        desc: "协助完成Socket.io实时通信通道配置，支持前后端数据推送与图表动态刷新。",
+                        image: "public/某公司销售数据与市场趋势可视化项目/流程四：集成实时数据与动态更新机制.jpg",
+                        content: [
+                            "Socket连接测试：在前端配置Socket.io通道，确保后端更新数据后能立即推送到页面。",
+                            "自动刷新机制调试：调用ECharts setOption()方法，测试新数据下图表即时刷新效果。",
+                            "数据频率调整：协助设置后端推送频率，避免过高频率导致前端渲染卡顿。",
+                            "并发访问性能检测：参与测试多用户访问时的数据稳定性与渲染效率。"
+                        ]
+                    },
+                    flow5: {
+                        title: "适配多端设备与性能调优",
+                        desc: "在项目后期，参与完成跨设备适配与性能优化，保证系统在大屏、PC和移动端均流畅运行。",
+                        image: "public/某公司销售数据与市场趋势可视化项目/流程五：适配多端设备与性能调优.jpg",
+                        content: [
+                            "响应式布局测试：协助使用flexible.js和rem布局体系，在不同分辨率下验证页面自适应效果。",
+                            "跨平台兼容性检查：逐一测试Chrome、Firefox、Edge等浏览器的展示一致性。",
+                            "性能调优支持：参与收集首屏加载时间、渲染帧率等性能数据，并提出优化建议。",
+                            "移动端简化展示：配合设计团队调整Pad与手机端的展示内容，保留核心图表功能。"
+                        ]
+                    },
+                    flow6: {
+                        title: "系统测试与项目部署上线",
+                        desc: "在最终阶段，协助进行系统功能与性能测试，整理用户体验反馈，配合完成部署与交付。",
+                        image: "public/某公司销售数据与市场趋势可视化项目/销售数据可视化项目-总图.jpg",
+                        content: [
+                            "功能测试支持：逐项验证各图表、3D模型与地图交互功能的完整性。",
+                            "压力测试参与：协助模拟多用户访问与高频数据刷新场景，记录系统性能表现。",
+                            "数据安全检测：检查前端是否正确调用加密接口，验证用户权限控制逻辑。",
+                            "用户反馈整理：参与业务人员试用测试，汇总体验问题并反馈至开发团队。",
+                            "部署上线协助：整理上线文档与配置说明，协助完成系统交付与运行交接。"
+                        ]
+                    }
+                }
+            },
+            shopping: {
+                title: "智能购物网站前端开发与AI优化集成项目",
+                flows: {
+                    flow1: {
+                        title: "需求分析与技术选型",
+                        desc: "在项目初期阶段，协助团队进行需求拆解与技术选型，熟悉功能模块定义过程，并参与前端框架与AI工具的评估，确保项目整体架构合理可行。",
+                        image: "public/智能购物网站前端开发与AI优化集成项目/流程一：需求分析与技术选型.jpeg",
+                        content: [
+                            "功能模块整理与确认：参与梳理用户登录、搜索、购物车和支付等核心功能需求，辅助团队完成功能文档，提升对项目业务逻辑的理解。",
+                            "前端框架学习与应用：在导师指导下参与React框架的评估与学习，掌握组件化思想与路由机制，确保能适应复杂交互场景。",
+                            "AI工具初步调研：辅助了解TensorFlow.js的集成方式，参与讨论前端与AI模型结合的可行性，积累AI在前端应用的经验。"
+                        ]
+                    },
+                    flow2: {
+                        title: "界面设计与用户体验优化",
+                        desc: "在界面开发环节中参与页面布局与样式编写，重点关注响应式设计与交互流畅度，并在性能优化环节进行基础实践。",
+                        image: "public/智能购物网站前端开发与AI优化集成项目/流程二：界面设计与用户体验优化.jpeg",
+                        content: [
+                            "响应式布局实践：运用CSS Grid与Flexbox编写基础页面，确保页面在桌面端与移动端均能正常显示。",
+                            "页面性能优化：参与代码拆分与图片懒加载的实现，初步掌握减少页面首屏加载时间的常用方法。",
+                            "UI细节调整：根据设计稿协助调整按钮、色彩与交互反馈，提升整体视觉统一性和用户操作体验。"
+                        ]
+                    },
+                    flow3: {
+                        title: "AI推荐系统集成",
+                        desc: "在AI推荐功能集成中，主要负责前端事件数据的收集与处理，协助完成推荐模型与前端页面的联调与优化。",
+                        image: "public/智能购物网站前端开发与AI优化集成项目/流程三：AI推荐系统集成.jpg",
+                        content: [
+                            "用户行为数据采集：参与编写前端事件监听代码，记录用户点击与浏览行为，为推荐系统提供基础数据。",
+                            "推荐功能对接：协助调试TensorFlow.js前端推理过程，保证推荐结果能在页面中实时渲染。",
+                            "模型优化反馈：整理A/B测试数据与用户反馈，协助分析推荐结果的准确性，为算法优化提供参考。"
+                        ]
+                    },
+                    flow4: {
+                        title: "测试与性能调优",
+                        desc: "在系统完成初版后，参与跨浏览器兼容性测试与前端性能优化，确保界面交互顺畅与AI推荐功能稳定。",
+                        image: "public/智能购物网站前端开发与AI优化集成项目/流程四：测试与性能调优.png",
+                        content: [
+                            "跨浏览器兼容性测试：使用BrowserStack进行页面测试，记录不同浏览器下的显示问题并提交修复建议。",
+                            "Lighthouse性能分析：参与性能指标检测，熟悉加载速度、可访问性等指标的分析方法，并协助完成优化。",
+                            "回归测试执行：配合团队在功能修复后进行测试验证，确保修改不影响原有模块的稳定性。"
+                        ]
+                    },
+                    flow5: {
+                        title: "持续集成与自动化部署",
+                        desc: "在代码迭代过程中协助配置基础CI/CD流程，熟悉前端项目的自动化测试与构建方法，确保交付稳定高效。",
+                        image: "public/智能购物网站前端开发与AI优化集成项目/流程五：持续集成与自动化部署.jpg",
+                        content: [
+                            "自动化构建实践：参与使用GitHub Actions完成代码的构建与自动部署，理解持续集成的基本流程。",
+                            "单元测试协助：使用Jest编写与运行简单组件单元测试，初步掌握前端测试的重要性与方法。",
+                            "部署与监控支持：协助容器化部署流程，并利用Sentry记录错误日志，帮助团队及时发现与定位问题。"
+                        ]
+                    },
+                    flow6: {
+                        title: "数据分析与用户反馈集成",
+                        desc: "在项目上线后参与用户行为数据的整理与反馈收集，支持推荐系统与页面设计的持续优化。",
+                        image: "public/智能购物网站前端开发与AI优化集成项目/流程六：数据分析与用户反馈集成.jpeg",
+                        content: [
+                            "用户数据整理：协助汇总Google Analytics收集的流量与点击数据，形成初步报表供团队分析。",
+                            "用户反馈集成：参与收集用户意见并整理成可操作性清单，用于优化推荐系统和界面细节。",
+                            "优化方案讨论：结合A/B测试结果与热图分析数据，协助提出前端改进建议，支持后续迭代优化。"
+                        ]
+                    }
+                }
+            },
+            aimodel: {
+                title: "AI大模型训练工程化实战项目",
+                flows: {
+                    flow1: {
+                        title: "项目立项与需求分析确认",
+                        desc: "对齐业务场景与技术边界，锁定指标、资源与预算，形成可度量的工程目标与风险预案。",
+                        image: "public/大规模AI模型训练与部署全链路实战/流程一：项目立项与需求分析确认.jpg",
+                        content: [
+                            "任务定义与接口：确定问答/生成/分类的输入输出协议与异常返回，避免后期联调歧义。",
+                            "指标与阈值：设定F1、ROUGE、Perplexity与P99<200ms目标，明确达标线与回滚触发线。",
+                            "资源测算：根据A100/H100显存与批量大小估算GPU·小时，拆分算力/存储/网络成本。",
+                            "合规安全清单：PII识别、脱敏与拒答策略落表，保留审计日志模板以便查验。",
+                            "里程碑与交付物：排定'数据达标→基线→调优→压缩→部署→监控→复盘'，对应产出与验收方式。",
+                            "风险预案：针对不收敛、数据缺口与预算超标制定应急与降级路径，并指定责任人。"
+                        ]
+                    },
+                    flow2: {
+                        title: "数据收集与预处理",
+                        desc: "以'采集—清洗—标注—质检—增强—版本化'流程构建高质量数据集，确保覆盖度、纯净度与可追溯性。",
+                        image: "public/大规模AI模型训练与部署全链路实战/流程二：数据收集与预处理.jpeg",
+                        content: [
+                            "合规采集：遵守robots与API条款，结合合成数据补长尾样本，记录来源与许可信息。",
+                            "工业级清洗：HTML去噪、编码修复、SimHash/MinHash去重近重，长文本切块保持上下文。",
+                            "标注体系：编写标签指南，专家难例校对；用主动学习优先标注高不确定样本。",
+                            "质检与一致性：计算Cohen's Kappa，一致性低样本复核并入错例库，形成纠偏流程。",
+                            "数据增强：回译、EDA与上下文替换；CV侧进行MixUp/CutMix与对抗样本生成。",
+                            "版本与切分：用DVC管理数据谱系，按时间/来源拆分Train/Val/Test，编写泄漏检测脚本。"
+                        ]
+                    },
+                    flow3: {
+                        title: "模型选择与架构设计",
+                        desc: "结合任务与数据域选择PTM并设计PEFT与并行策略，搭建统一训练脚手架，确保可扩展与可复用。",
+                        image: "public/大规模AI模型训练与部署全链路实战/流程三：模型选择与架构设计.jpg",
+                        content: [
+                            "基线评测：对比BERT/T5/GPT/ViT等基线在本域的零/少样本表现，锁定起步模型。",
+                            "PEFT插桩：预留LoRA/Adapter/Prefix接口与冻结/解冻策略，统一权重命名与加载流程。",
+                            "并行方案：规划DP/TP/PP/FSDP组合与Offload路径，平衡显存占用与吞吐目标。",
+                            "超参初设：确定优化器、学习率区间、梯度累积与Warmup+Cosine调度，作为稳定基线。",
+                            "训练脚手架与追踪：封装DDP/DeepSpeed启动脚本，集成W&B/MLflow记录与Checkpoint规范。",
+                            "复现策略：固定随机种子与容器镜像，提供一键重现实验README与校验脚本。"
+                        ]
+                    },
+                    flow4: {
+                        title: "模型训练与优化",
+                        desc: "在混合精度与分布式框架下推进收敛，结合正则与调度稳定训练，以可观测性与自动化调参提升效率。",
+                        image: "public/大规模AI模型训练与部署全链路实战/流程四：模型训练与优化.jpeg",
+                        content: [
+                            "加速手段：启用AMP（BF16/FP16）、Gradient Checkpointing与梯度累积，缓解显存瓶颈。",
+                            "通信优化：配置NCCL分组AllReduce与计算—通信重叠，减少跨节点带宽占用。",
+                            "正则与鲁棒：应用Label Smoothing、Focal Loss与对抗训练（PGD/FGSM）提升泛化。",
+                            "可观测性：实时跟踪损失、指标、学习率、梯度范数、显存与GPU利用率，自动保存最优Checkpoint。",
+                            "异常诊断：定位NaN/爆梯/震荡，回滚稳定超参并记录变更说明；对欠拟合样本回流到数据增强。",
+                            "自动化HPO：使用Optuna/Ray Tune低保真搜索+高保真复核，输出参数重要性与响应曲线图。"
+                        ]
+                    },
+                    flow5: {
+                        title: "模型压缩与部署上线监控",
+                        desc: "在'精度可控'的前提下降本增效，完成剪枝/量化/蒸馏与引擎优化，并以金丝雀发布、全链路监控与安全加固保障上线质量。",
+                        image: "public/大规模AI模型训练与部署全链路实战/流程五：模型压缩与部署上线监控.png",
+                        content: [
+                            "剪枝与回退：执行通道/头/层结构化剪枝，迭代'剪—调—评'至目标稀疏度，设定精度回退线。",
+                            "量化与校准：优先PTQ INT8/INT4，必要时QAT；比较离线/在线校准误差并记录影响。",
+                            "蒸馏与小模型：构建教师—学生框架，联合软/硬标签损失；评估小模型在目标场景QPS与精度。",
+                            "引擎优化：导出ONNX/TensorRT/TorchScript，做算子融合与动态Batch配置，验证吞吐与延迟。",
+                            "部署策略：在K8s+Triton/KServe落地服务，采用蓝绿/金丝雀/影子流量，提供快速回滚脚本。",
+                            "监控与告警：接入P50/P90/P99延迟、QPS、错误率与数据/概念漂移检测，告警路由至值班渠道。",
+                            "安全与合规：API速率限制、输入校验、模型水印/指纹与审计日志，周期性安全扫描与复评。",
+                            "反馈闭环：回收线上弱样本与用户反馈，周期清洗并微调，保持持续迭代与效果稳定。"
+                        ]
+                    },
+                    flow6: {
+                        title: "反馈闭环与持续优化",
+                        desc: "建立线上反馈机制，持续收集弱样本并进行模型迭代，形成持续改进的闭环。",
+                        image: "public/大规模AI模型训练与部署全链路实战/AI大模型训练工程化实战项目-主图.png",
+                        content: [
+                            "反馈收集：回收线上弱样本与用户反馈，建立标注队列与优先级机制。",
+                            "周期微调：定期清洗数据并进行增量训练，对比基线版本性能。",
+                            "效果评估：监控模型性能指标变化，设置性能下降阈值触发重训练。",
+                            "版本管理：维护模型版本与回滚机制，记录每个版本的训练参数与数据集。",
+                            "知识蒸馏更新：定期更新教师模型，重新训练学生模型提升线上效果。",
+                            "长尾优化：分析badcase分布，针对性收集数据补充训练集。"
+                        ]
+                    }
+                }
+            },
+            database: {
+                title: "大型电商交易系统数据库架构优化项目",
+                flows: {
+                    flow1: {
+                        title: "数据库功能垂直拆分",
+                        desc: "在系统架构调整阶段，协助完成数据库模块的拆分规划与执行，重点配合核心业务与非核心业务的分离部署，确保高并发下的数据库稳定运行。",
+                        image: "public/大型电商交易系统数据库架构优化与性能提升项目/流程一：数据库功能垂直拆分.jpg",
+                        content: [
+                            "模块划分支持：参与业务功能梳理，将订单、支付与用户等高并发模块拆分独立部署，减少资源竞争。",
+                            "数据隔离执行：配合将交易数据库与库存数据库分离，避免库存更新对支付与订单处理造成延迟。",
+                            "维护与升级协助：协助建立模块化部署方案，使非核心模块升级时不影响整体数据库运行。"
+                        ]
+                    },
+                    flow2: {
+                        title: "数据库水平拆分与分片策略",
+                        desc: "在大规模数据表优化阶段，支持团队实施分表与分库操作，利用一致性哈希策略实现数据均衡分布，并参与迁移测试。",
+                        image: "public/大型电商交易系统数据库架构优化与性能提升项目/流程二：数据库水平拆分与分片策略.jpg",
+                        content: [
+                            "分片规则制定：协助选定user_id、order_id等作为分片键，保证访问路径稳定高效。",
+                            "均衡策略落实：配合虚拟节点分布方案，确保数据均匀分散，避免单节点压力过大。",
+                            "迁移过程支持：参与新老库双写与校验测试，跟进迁移过程中出现的数据差异。"
+                        ]
+                    },
+                    flow3: {
+                        title: "优化索引结构与查询性能",
+                        desc: "在数据库性能优化阶段，协助设计和维护索引体系，配合完成SQL执行计划分析，减少全表扫描并提升整体查询速度。",
+                        image: "public/大型电商交易系统数据库架构优化与性能提升项目/流程三：优化索引结构与查询性能.jpeg",
+                        content: [
+                            "索引结构设计：参与组合索引优化，结合查询条件顺序，减少回表操作并提高匹配效率。",
+                            "查询语句调整：配合优化SQL语句，避免SELECT *等低效操作，减少I/O传输。",
+                            "索引维护支持：协助进行索引重建与统计信息更新，确保高访问量表的查询性能保持稳定。"
+                        ]
+                    },
+                    flow4: {
+                        title: "构建多级缓存体系",
+                        desc: "在数据库与应用交互层，协助完成多级缓存的部署与配置，支持热点数据缓存预热，减轻数据库高峰期压力。",
+                        image: "public/大型电商交易系统数据库架构优化与性能提升项目/流程四：构建多级缓存体系.png",
+                        content: [
+                            "缓存策略协助：支持一级本地缓存与二级Redis缓存的部署，提升常用数据访问速度。",
+                            "数据一致性保障：参与TTL与主动失效策略测试，减少缓存与数据库之间的不一致情况。",
+                            "缓存预热执行：协助在大促活动前加载热销商品数据，保证高并发时快速响应。"
+                        ]
+                    },
+                    flow5: {
+                        title: "全局唯一ID生成与路由机制",
+                        desc: "在分表环境下，参与团队ID生成机制的设计与测试，确保分布式环境下的数据唯一性与可追溯性。",
+                        image: "public/大型电商交易系统数据库架构优化与性能提升项目/流程五：全局唯一ID生成与路由机制.jpg",
+                        content: [
+                            "ID生成测试：协助验证Snowflake算法生成的分布式ID在高并发下的稳定性。",
+                            "路由机制支持：配合实现基于ID的快速路由定位，提升查询与写入操作效率。",
+                            "异常处理参与：参与测试时钟回拨异常检测与补救措施，确保ID不会冲突。"
+                        ]
+                    },
+                    flow6: {
+                        title: "部署读写分离与分布式事务解决方案",
+                        desc: "在数据库架构优化后期，协助部署读写分离机制并支持事务一致性测试，提升系统可扩展性和数据可靠性。",
+                        image: "public/大型电商交易系统数据库架构优化与性能提升项目/流程六：部署读写分离与分布式事务解决方案.jpg",
+                        content: [
+                            "主从复制测试：参与监测主从延迟情况，确保读写分离环境下的查询结果准确。",
+                            "事务一致性支持：配合团队在跨库事务场景下测试可靠消息机制，保证最终一致性。",
+                            "故障切换协助：参与模拟主从切换演练，记录切换时长和对业务的影响，为后续优化提供数据。"
+                        ]
+                    }
+                }
+            },
+            security: {
+                title: "智能门锁软件与功能安全测试项目",
+                flows: {
+                    flow1: {
+                        title: "制定安全测试计划与需求分析",
+                        desc: "统一安全目标与验证范围，结合威胁建模与标准规范制定可落地的测试策略与排期，为后续执行提供依据。",
+                        image: "public/智能门锁的系统安全测试项目/流程一：制定安全测试计划与需求分析.jpg",
+                        content: [
+                            "测试目标细化：将固件防篡改、通信加密、身份校验与权限粒度分解为可量化检查项并建立口径。",
+                            "威胁建模输出：用 Threat Dragon 绘制数据流图，标注MITM、暴力破解与反编译等攻击路径及影响面。",
+                            "覆盖范围定义：列出固件、云端API、移动端APP与后台管理四大模块的必测清单与边界说明。",
+                            "资源与工具规划：准备 Python+pytest、Postman/Newman、ELK 日志平台与脚本模板，保证可控可复现。",
+                            "标准与合规映射：对齐企业安全规范与行业最佳实践，形成需求追踪矩阵并与研发评审确认。",
+                            "风险与优先级：基于CVSS评定高、中、低等级，明确先测顺序与阻塞项解除条件，降低排期风险。"
+                        ]
+                    },
+                    flow2: {
+                        title: "构建测试环境与数据准备",
+                        desc: "还原真实使用场景，完成固件、APP、云服务与后台的一体化部署，提供弱网与异常注入能力并准备高质量测试数据。",
+                        image: "public/智能门锁的系统安全测试项目/流程二：构建测试环境与数据准备.png",
+                        content: [
+                            "环境搭建落地：部署目标固件版本，初始化APP与云平台对接，配置多角色账号与最小权限策略。",
+                            "测试数据构建：用 Faker 生成复杂口令、临时授权码与指纹模板，覆盖正常与边界输入场景。",
+                            "网络条件模拟：引入延迟、丢包与抖动工具，检验弱网条件下的功能稳定性与安全退避策略。",
+                            "日志监控接入：开启调试与安全事件日志，打通ELK仪表盘以支持攻击过程追溯与异常定位。",
+                            "接口桩与模拟：搭建Postman Mock服务与错误码注入机制，确保异常路径可控且可重复复现。",
+                            "环境健康校验：编写Smoke用例与连通性脚本，验证依赖服务、证书与时钟同步等基础条件。"
+                        ]
+                    },
+                    flow3: {
+                        title: "执行功能安全测试",
+                        desc: "以自动化与手工结合的方式验证核心功能在多输入、多顺序与多场景下的正确性与稳健性，排除逻辑漏洞与崩溃风险。",
+                        image: "public/智能门锁的系统安全测试项目/流程三：执行功能安全测试.png",
+                        content: [
+                            "身份认证覆盖：用 Appium 模拟指纹、人脸与密码等方式，统计成功率、误拒率与异常重试处理。",
+                            "权限校验用例：借助 Postman/Newman 执行角色分级测试，验证普通用户与管理员API访问边界。",
+                            "异常输入稳健：结合 pytest+Hypothesis 生成随机与极端输入，评估非法字符、超长请求与编码异常。",
+                            "业务流程串测：以 Robot Framework 编排'开锁→授权→撤销'链路，拦截跳步与状态不同步问题。",
+                            "数据一致性核对：脚本比对本地与云端授权状态与指纹模板，确保读写一致与延迟可接受。",
+                            "压力与稳定性：进行并发与持续运行测试，观察资源占用与崩溃日志，评估长时间可靠性。",
+                            "异常与容错验证：模拟断网、掉电与服务降级场景，核对重试、回滚与告警是否按设计触发。"
+                        ]
+                    },
+                    flow4: {
+                        title: "执行安全渗透与加密验证测试",
+                        desc: "围绕通信、固件与接口进行对抗性验证，模拟真实攻击手段评估系统防护深度与告警有效性。",
+                        image: "public/智能门锁的系统安全测试项目/流程四：执行安全渗透与加密验证测试.jpeg",
+                        content: [
+                            "加密链路核查：用 Burp Suite 代理抓包，验证TLS版本、证书校验与HSTS配置，拦截MITM并确认阻断。",
+                            "固件完整性测试：尝试固件替换与逆向分析，验证签名校验、反调试与完整性检测是否生效。",
+                            "口令安全评估：使用 Hydra/John the Ripper 进行弱口令与暴力破解，确认锁定策略与速率限制。",
+                            "API漏洞扫描：以 OWASP ZAP 自动发现注入、鉴权绕过与XSS，并手工验证与补充POC链路。",
+                            "Fuzz 与健壮性：对云端与固件接口进行AFL等fuzz测试，定位崩溃点与异常响应并记录触发条件。",
+                            "证书与密钥管理：核查证书轮换、密钥存储位置与权限，确保泄露面与使用范围受控可审计。",
+                            "漏洞复现归档：为高危问题录制复现视频与抓包证据，沉淀修复验收标准与关闭条件。"
+                        ]
+                    },
+                    flow5: {
+                        title: "结果分析与问题修复验证",
+                        desc: "汇总测试与渗透结果，形成漏洞清单与修复建议，推动研发修复并执行回归测试与覆盖率审查，最终完成闭环。",
+                        image: "public/智能门锁的系统安全测试项目/流程五：结果分析与问题修复验证.jpeg",
+                        content: [
+                            "问题归类评级：按CVSS与影响范围划分高/中/低等级，确定优先修复序列与跟踪编号。",
+                            "修复方案建议：给出参数加固、鉴权校验与输入过滤等具体改造建议，并评估对业务的影响面。",
+                            "回归测试执行：针对修复提交运行自动化回归与关键路径手测，验证无新缺陷与性能退化。",
+                            "覆盖率与缺口：统计接口、协议、APP与后台覆盖率，补齐薄弱点并更新用例映射关系。",
+                            "报告与复盘输出：编制含风险评估、漏洞详情、修复建议与方法说明的报告，并沉淀改进清单。",
+                            "基线与SOP更新：将高频问题转化为检查项写入安全基线与SOP，纳入后续版本的准入门槛。"
+                        ]
+                    },
+                    flow6: {
+                        title: "报告输出与基线更新",
+                        desc: "编制完整的测试报告并更新安全基线，为后续版本提供参考与改进方向。",
+                        image: "public/智能门锁的系统安全测试项目/智能门锁的系统安全测试项目-主图.jpg",
+                        content: [
+                            "报告编制：整理测试执行过程、发现的问题、修复状态与风险评估，形成完整的测试报告。",
+                            "基线更新：将本次测试中发现的高频问题和关键检查点更新到安全基线文档中。",
+                            "SOP沉淀：将有效的测试方法和流程固化为标准操作程序，便于后续版本复用。",
+                            "改进建议：基于测试结果提出系统架构、代码质量和安全防护的改进建议。",
+                            "知识传递：组织团队复盘会议，分享测试经验和教训，提升团队整体测试能力。",
+                            "工具优化：更新和维护自动化测试脚本库，提高后续测试效率。"
+                        ]
+                    }
+                }
+            }
+        };
+        
+        // Open modal function
+        function openProjectModal(projectKey) {
+            const modal = document.getElementById('projectModal');
+            const project = projectData[projectKey];
+            
+            if (!project) return;
+            
+            // Set title
+            document.getElementById('modalTitle').textContent = project.title;
+            
+            // Reset to first tab
+            switchToFlow('flow1', project);
+            
+            // Reset tab buttons
+            document.querySelectorAll('.tab-btn').forEach((btn, index) => {
+                if (index === 0) {
+                    btn.classList.add('active');
+                    btn.style.borderColor = 'var(--primary)';
+                    btn.style.color = 'var(--primary)';
+                } else {
+                    btn.classList.remove('active');
+                    btn.style.borderColor = 'transparent';
+                    btn.style.color = '';
+                }
+                
+                // Store project key for tab switching
+                btn.dataset.project = projectKey;
+            });
+            
+            // Show modal
+            modal.classList.remove('hidden');
+            
+            // Re-initialize Lucide icons for modal
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        }
+        
+        // Close modal function
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.add('hidden');
+        }
+        
+        // Switch tab function
+        function switchTab(event, flowKey) {
+            const btn = event.target;
+            const projectKey = btn.dataset.project || document.querySelector('.tab-btn').dataset.project;
+            const project = projectData[projectKey];
+            
+            if (!project) return;
+            
+            // Update active tab
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('active');
+                b.style.borderColor = 'transparent';
+                b.style.color = '';
+            });
+            
+            btn.classList.add('active');
+            btn.style.borderColor = 'var(--primary)';
+            btn.style.color = 'var(--primary)';
+            
+            // Switch content
+            switchToFlow(flowKey, project);
+        }
+        
+        // Switch flow content
+        function switchToFlow(flowKey, project) {
+            const flow = project.flows[flowKey];
+            
+            if (!flow) return;
+            
+            // Update image
+            document.getElementById('modalImage').src = flow.image;
+            
+            // Update title and description
+            document.getElementById('modalFlowTitle').textContent = flow.title;
+            document.getElementById('modalFlowDesc').textContent = flow.desc;
+            
+            // Update work content
+            const contentList = document.getElementById('modalWorkContent');
+            contentList.innerHTML = flow.content.map(item => 
+                `<li class="flex items-start">
+                    <span class="text-cyan-400 mr-2">•</span>
+                    <span><strong>${item.split('：')[0]}：</strong>${item.split('：')[1] || ''}</span>
+                </li>`
+            ).join('');
+        }
+        
+        // ESC key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+        
+        // Horizontal scroll from GitHub Project 007-03
+        const scrollbox = {
+            wrapper: null,
+            cardsbox: null,
+            distance: 0,
+            if_leave: false,
+            
+            init() {
+                console.log("Initializing horizontal scroll...");
+                
+                // 确保GSAP和ScrollTrigger已加载
+                if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                    console.error("GSAP or ScrollTrigger not loaded! Retrying in 500ms...");
+                    setTimeout(() => this.init(), 500);
+                    return;
+                }
+                
+                // 注册ScrollTrigger插件
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // 获取元素
+                this.wrapper = document.querySelector(".project-wrapper");
+                this.cardsbox = document.querySelector(".project-cardsbox");
+                
+                if (!this.wrapper || !this.cardsbox) {
+                    console.error("Required elements not found!");
+                    return;
+                }
+                
+                console.log("Found elements:", {
+                    wrapper: this.wrapper,
+                    cardsbox: this.cardsbox
+                });
+                
+                // 初始化
+                this.resize();
+                window.addEventListener("resize", this.resize.bind(this));
+                this.create_scrolltrigger();
+            },
+            
+            create_scrolltrigger() {
+                ScrollTrigger.create({
+                    trigger: this.wrapper,
+                    start: "top 32px", // 当wrapper顶部到达视口顶部64px位置时开始
+                    end: "bottom bottom",
+                    onUpdate: (self) => {
+                        this.cardsbox.style.transform = `translateX(-${self.progress * this.distance}px)`;
+                        console.log("Progress:", self.progress.toFixed(3), "TranslateX:", -(self.progress * this.distance).toFixed(0));
+                    },
+                    onLeave: () => {
+                        this.if_leave = true;
+                        console.log("离开触发区域");
+                    },
+                    onEnterBack: () => {
+                        this.if_leave = false;
+                        console.log("进入触发区域");
+                    },
+                    markers: false // 关闭调试标记
+                });
+            },
+            
+            resize() {
+                // 计算滚动距离
+                this.distance = this.cardsbox.offsetWidth - window.innerWidth;
+                // 设置wrapper高度
+                this.wrapper.style.height = `${this.distance}px`;
+                // 如果已经离开，保持在最后位置
+                if (this.if_leave) {
+                    this.cardsbox.style.transform = `translateX(-${this.distance}px)`;
+                }
+                
+                console.log("Resize:", {
+                    distance: this.distance,
+                    wrapperHeight: this.wrapper.style.height,
+                    cardsboxWidth: this.cardsbox.offsetWidth,
+                    windowWidth: window.innerWidth
+                });
+            }
+        };
+        
+        // 初始化横向滚动
+        function initHorizontalScroll() {
+            scrollbox.init();
+        }
+        
+        // Horizontal scroll will be initialized after loading animation completes
+    </script>
+
+</body>
+</html>

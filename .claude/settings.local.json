@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open:*)",
+      "Read(/tmp/ascii-animation/**)",
+      "Read(/tmp/ascii-animation/**)",
+      "Read(/tmp/hexagons-matrix/**)",
+      "Read(/tmp/hexagons-matrix/**)",
+      "Bash(ps:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "Read(/private/tmp/**)",
+      "Read(/tmp/007-03-horizontal-scrolling-scrolltrigger/**)",
+      "Read(/tmp/007-03-horizontal-scrolling-scrolltrigger/**)",
+      "Read(/tmp/007-03-horizontal-scrolling-scrolltrigger/**)",
+      "Read(/private/tmp/**)",
+      "Read(/tmp/013-magnetic-yoyo/**)",
+      "Read(/tmp/013-magnetic-yoyo/**)",
+      "Bash(lsof:*)",
+      "Read(//Users/apple/Documents/cursor/作品集/个人简历_财经商贸/**)",
+      "Bash(npm install)",
+      "Bash(npm start)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
